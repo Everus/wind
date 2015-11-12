@@ -20,4 +20,9 @@ class SURL extends ActiveRecord
     {
         return $this->hasOne(Content::className(), ['id' => 'content_id']);
     }
+
+    public function toString()
+    {
+        return $this->name;
+    }
 }

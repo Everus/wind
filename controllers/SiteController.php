@@ -32,13 +32,12 @@ class SiteController extends Controller
             ->leftJoin('surl', 'surl.content_id = content.id')
             ->where(['surl.name' => $surl])
             ->one();
-        $model = $content->sURL;
         if(!$content) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-        if($content->sURL->name !== $surl) {
+        if($content->getSURLString() !== $surl) {
             return $this->redirect(Url::toRoute([
-                'posts/'.$content->sURL->name,
+                'posts/'.$content->getSURLString(),
             ]));
         }
         return $this->render('index', [

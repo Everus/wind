@@ -21,4 +21,16 @@ class Content extends ActiveRecord
     {
         return $this->hasMany(SURL::className(), ['content_id' => 'id']);
     }
+
+    public function setSURLString($link)
+    {
+        $this->surl = new SURL();
+        $this->surl->name = $link;
+        return $this;
+    }
+
+    public function getSURLString()
+    {
+        return $this->surl->toString();
+    }
 }
