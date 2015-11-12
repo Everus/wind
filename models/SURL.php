@@ -9,7 +9,7 @@ namespace app\models;
 use yii\db\ActiveRecord;
 
 
-class SURL extends ActiveRecord
+class sURL extends ActiveRecord
 {
     public static function tableName()
     {

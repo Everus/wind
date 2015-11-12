@@ -3,11 +3,7 @@
 namespace app\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 use yii\web\NotFoundHttpException;
 use yii\helpers\Url;
 use app\models\Content;
@@ -27,12 +23,7 @@ class SiteController extends Controller
     {
         $request = Yii::$app->request;
         $surl = $request->get('surl');
-        $content = Content::find()
-            ->select('content.*')
-            ->leftJoin('surl', 'surl.content_id = content.id')
-            ->where(['surl.name' => $surl])
-            ->one();
-        if(!$content) {
+        if(!$content = Content::findOneByURL($surl)) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
         if($content->getSURLString() !== $surl) {

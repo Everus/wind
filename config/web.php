@@ -6,12 +6,14 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => 'content/index',
     'components' => [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
                 'posts/<surl>' => 'site/show',
+                '<controller>/<action>' => '<controller>/<action>',
             ],
         ],
         'request' => [
